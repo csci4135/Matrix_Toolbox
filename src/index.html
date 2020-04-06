@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>MyMathTool</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <script>
+    function playGame()
+    {
+    var rows = document.forms[1].elements[0].value
+    var cols = document.forms[1].elements[1].value
+    var matrix = [];var A = [];
+    for(var i=0; i<rows; i++) {
+        matrix[i] = [];
+        for(var j=0; j<cols; j++) {
+            matrix[i][j] = Math.floor(Math.random() * 100 + 1);
+            
+        }
+      }
+
+    var count = 0;  
+    for(var i=0; i<rows; i++) {
+        for(var j=0; j<cols; j++) {        
+            A[count] = matrix[i][j]
+            count++;
+        }
+    
+      }    
+    var temp = 0  
+    for(var i = 0; i < count; i++) { 
+      for (var j = i + 1;j < count; j++) {
+        if(A[i] > A[j]) { 
+          temp = A[i]
+          A[i] = A[j]
+          A[j] = temp
+         }
+       }
+     }			  
+    document.write("<head>")
+    document.write('<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">')
+    document.write("</head>")
+    document.write("<body><nav-bar></nav-bar>")      
+    document.write('<div class="container">')
+    document.write('<table class = "table table-striped table-bordered table-hover">') 
+    
+    document.write("<center><h1>Below is a Matrix with ",rows," rows and ",cols," columns -----> </h1></center><br>")    
+    
+    for(var i=0; i<rows; i++) {
+        document.write('<tr>')
+        for(var j=0; j<cols; j++) {     
+            document.write('<td>',matrix[i][j],'</td>')                           
+        }
+        document.write('</tr> ')        
+      }
+      document.write('</table>')
+    if(rows != cols)    
+      document.write("</h2></center><br><br><center><p class='bg-warning'>The matrix should be a square matrix to compute the trace!</p></center>")
+    else{
+        var trace = 0;
+        for(var i=0; i<rows; i++) 
+          trace = trace + matrix[i][i]
+        document.write("<center><h1 style = 'font-family:tahoma; color:green'>Trace of the matrix = ",trace,"</h1></center><br>")	
+      }	
+      
+    document.write("<center><h1 style = 'font-family:tahoma; color:green'>Sorted numbers in the matrix --> </h1></center><br><br>")
+    document.write("<center><h2 style = 'font-family:tahoma; color:blue'>") 
+    for (var i = 0; i < rows*cols; i++)
+	    document.write(A[i],"&nbsp;&nbsp");   
+
+      document.wrtie("</h2></center><br>") 
+         
+    document.write("</body>")
+    } 
+    </script>
+</head>
+<body>
+  <app-root></app-root>
+</body>
+</html>
